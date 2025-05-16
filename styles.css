@@ -72,6 +72,8 @@ h2 {
 }
 
 .timer {
+   overflow-x: auto;
+  -webkit-overflow-scrolling: touch; 
   display: flex;
   justify-content: center;
   gap: 1.5rem;
