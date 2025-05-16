@@ -1,6 +1,6 @@
 {
-  "name": "Oracolo dei Segreti",
-  "short_name": "Oracolo",
+  "name": "Trip timer",
+  "short_name": "Trip timer",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#673AB7",
