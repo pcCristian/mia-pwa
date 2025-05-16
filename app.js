@@ -26,7 +26,8 @@ const frasi = [
   "Nu sunt perfect, dar sunt ediție limitată.",
   "Mă iubește da’ din sărăcie nu poate arăta.",
   "Nu o masa da trei mese!",
-  "Tu taci, că pe tine nici mă-ta nu te crede."
+  "Tu taci, că pe tine nici mă-ta nu te crede.",
+  "Nu lam batut, numai lam inshipt cu cutzitul."
 ];
 
 const fraseEl = document.getElementById("frase");
