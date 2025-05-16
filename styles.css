@@ -4,110 +4,209 @@ body {
   background: linear-gradient(135deg, #7b4397, #dc2430);
   color: white;
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 1rem;
   min-height: 100vh;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .container {
-  max-width: 480px;
+  max-width: 600px;
+  width: 90%;
   margin: auto;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
 }
 
 .frase {
   margin: 2rem 0;
-  font-size: 1.5rem;
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
   min-height: 80px;
-  padding: 1rem;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.15);
-  transition: opacity 0.5s ease;
+  padding: 1.2rem 1.5rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  transition: opacity 0.5s ease, background-color 0.4s ease;
+  font-weight: 600;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+  user-select: none;
+}
+
+.frase:hover {
+  background: rgba(255, 255, 255, 0.35);
 }
 
 button {
-  font-size: 1.1rem;
-  padding: 0.6rem 1.2rem;
-  margin: 0.5rem;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  padding: 0.75rem 1.8rem;
+  margin: 0.5rem 0.7rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   background: #9575cd;
   color: white;
   cursor: pointer;
   user-select: none;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(149, 117, 205, 0.6);
+  font-weight: 700;
 }
 
 button:disabled {
   background: #6f5499;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 button:hover:not(:disabled) {
   background: #7e57c2;
+  transform: scale(1.05);
 }
 
 h2 {
   margin-top: 3rem;
-  font-weight: normal;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 2.5vw, 2.3rem);
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 }
+
 #listaPreferiti {
   list-style: none;
   padding: 0;
   margin-top: 1rem;
   color: #d1c4e9;
-  max-height: 200px;
+  max-height: 220px;
   overflow-y: auto;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0 10px rgba(255,255,255,0.15);
 }
+
 #listaPreferiti li {
-  background: rgba(255, 255, 255, 0.1);
-  margin: 0.3rem 0;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 0.4rem 0;
+  padding: 0.7rem 1.3rem;
+  border-radius: 12px;
   cursor: pointer;
   user-select: none;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.15s ease;
+  font-weight: 600;
 }
+
 #listaPreferiti li:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.03);
 }
 
 .timer {
- 
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 1.8rem;
   margin: 2rem 0 3rem;
-  font-weight: 700;
-  font-size: 2.5rem;
+  font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3rem);
   user-select: none;
   color: #ffd54f;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.85);
+  flex-wrap: wrap;
 }
 
 .timer div {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-  padding: 1rem 1.5rem;
-  min-width: 90px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  padding: 1.2rem 2rem;
+  min-width: 100px;
+  box-shadow: 0 4px 12px rgba(255, 213, 79, 0.5);
+  transition: background-color 0.3s ease;
 }
 
 .timer span {
   display: block;
-  font-size: 3.5rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1;
   font-family: 'Courier New', Courier, monospace;
 }
 
-@media (max-width: 400px) {
+.timer div:hover {
+  background: rgba(255, 213, 79, 0.3);
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1.5rem 1.8rem;
+  }
+
+  .frase {
+    font-size: 1.3rem;
+    padding: 1rem 1.2rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+    margin: 0.4rem 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+  }
+
+  #listaPreferiti {
+    max-height: 160px;
+  }
+
   .timer {
-    flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
+    font-size: 1.8rem;
+  }
+
+  .timer div {
+    min-width: 80px;
+    padding: 0.7rem 1.2rem;
+  }
+
+  .timer span {
+    font-size: 2.4rem;
+  }
+}
+
+@media (max-width: 320px) {
+  body {
+    padding: 1rem 0.7rem;
+  }
+
+  .container {
+    max-width: 95vw;
+    padding: 1rem 1.2rem;
+  }
+
+  .frase {
+    font-size: 1.1rem;
+    min-height: 70px;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .timer {
     font-size: 1.5rem;
   }
 
   .timer div {
-    min-width: auto;
-    padding: 0.5rem 0.7rem;
+    min-width: 70px;
+    padding: 0.5rem 1rem;
   }
 
   .timer span {
