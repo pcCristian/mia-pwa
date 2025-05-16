@@ -69,8 +69,53 @@ function caricaPreferiti() {
   });
 }
 
+
 nuovaFraseBtn.addEventListener("click", mostraFrase);
 aggiungiPreferitaBtn.addEventListener("click", salvaPreferiti);
 
 // Carica preferiti all'avvio
 caricaPreferiti();
+// TIMER CONTO ALL'INDIETRO FINO ALL'11 AGOSTO
+const timerEl = {
+  giorni: document.getElementById("giorni"),
+  ore: document.getElementById("ore"),
+  minuti: document.getElementById("minuti"),
+  secondi: document.getElementById("secondi")
+};
+
+// Imposta la data obiettivo: 11 agosto (ora 00:00:00)
+const targetDate = new Date(new Date().getFullYear(), 7, 11, 0, 0, 0); // Mese 7 = agosto (0-based)
+
+// Se siamo oltre l'11 agosto di quest'anno, passa all'anno prossimo
+if (new Date() > targetDate) {
+  targetDate.setFullYear(targetDate.getFullYear() + 1);
+}
+
+function aggiornaTimer() {
+  const oraAdesso = new Date();
+  const diff = targetDate - oraAdesso;
+
+  if (diff <= 0) {
+    timerEl.giorni.textContent = "00";
+    timerEl.ore.textContent = "00";
+    timerEl.minuti.textContent = "00";
+    timerEl.secondi.textContent = "00";
+    clearInterval(timerInterval);
+    return;
+  }
+
+  const giorni = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const ore = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minuti = Math.floor((diff / (1000 * 60)) % 60);
+  const secondi = Math.floor((diff / 1000) % 60);
+
+  timerEl.giorni.textContent = String(giorni).padStart(2, "0");
+  timerEl.ore.textContent = String(ore).padStart(2, "0");
+  timerEl.minuti.textContent = String(minuti).padStart(2, "0");
+  timerEl.secondi.textContent = String(secondi).padStart(2, "0");
+}
+
+const timerInterval = setInterval(aggiornaTimer, 1000);
+aggiornaTimer();
+
+
