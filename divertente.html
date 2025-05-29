@@ -5,177 +5,359 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Artigianato Locale - Prodotti e Storie</title>
   <style>
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* Palette e Font */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat:wght@400;600&display=swap');
+    :root {
+      --bg-dark: #121212;
+      --bg-card: #1e1e2f;
+      --accent: #ff6f61;
+      --accent-dark: #e65c4f;
+      --text-light: #f0f0f0;
+      --text-muted: #a0a0a0;
+      --shadow: rgba(255, 111, 97, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Georgia', serif;
-      background: #fff8f0;
-      color: #5a3e2b;
       margin: 0;
-      padding: 1rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      animation: fadeIn 0.8s ease forwards;
+      background: var(--bg-dark);
+      color: var(--text-light);
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 1rem;
     }
+
     header {
       text-align: center;
-      margin-bottom: 1rem;
-    }
-    h1 {
-      font-family: 'Palatino Linotype', serif;
-      font-weight: normal;
-      color: #a65e2e;
-    }
-    .product {
-      border: 1px solid #d8c4af;
-      border-radius: 8px;
-      background: #fff0e5;
-      margin-bottom: 1rem;
-      padding: 1rem;
-      box-shadow: 2px 2px 8px #e0cbb6;
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-      cursor: default;
+      max-width: 640px;
+      margin-bottom: 2rem;
+      font-family: 'Playfair Display', serif;
       animation: fadeIn 1s ease forwards;
     }
+
+    header h1 {
+      font-weight: 700;
+      font-size: 2.8rem;
+      margin: 0;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+    }
+
+    header p {
+      margin-top: 0.3rem;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* Layout prodotti */
+    #products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 960px;
+      width: 100%;
+      margin-bottom: 3rem;
+    }
+
+    .product {
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
     .product:hover {
-      box-shadow: 4px 6px 12px #d1b57f;
-      transform: translateY(-4px);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px var(--shadow);
     }
+
     .product img {
-      max-width: 100%;
-      border-radius: 6px;
-      display: block;
-      margin-bottom: 0.6rem;
-      transition: transform 0.3s ease;
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      filter: brightness(0.85);
+      transition: filter 0.3s ease;
+      border-bottom: 3px solid var(--accent);
     }
-    .product img:hover {
+    .product:hover img {
+      filter: brightness(1);
+    }
+
+    .product-content {
+      padding: 1.5rem 1.5rem 2rem 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      margin: 0 0 0.5rem 0;
+      color: var(--accent);
+    }
+
+    .product-content p.description {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.3;
+      flex-grow: 1;
+      margin-bottom: 1rem;
+    }
+
+    .product-content p.story {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #d7a68d;
+      border-top: 1px solid #4b3c2b;
+      padding-top: 0.8rem;
+      margin: 0;
+    }
+
+    /* Sezione dietro le quinte */
+    #behindTheScenes {
+      max-width: 640px;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px var(--shadow);
+      padding: 2rem 2rem 2.5rem 2rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      font-style: italic;
+      color: #d7a68d;
+      font-size: 1.1rem;
+      animation: fadeIn 1.4s ease forwards;
+    }
+
+    /* Video slow motion */
+    #videoSection {
+      max-width: 640px;
+      width: 100%;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px var(--shadow);
+      padding: 1.2rem;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    #videoSection h2 {
+      color: var(--accent);
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 12px;
+      filter: sepia(0.15) saturate(1.1) brightness(0.9);
+      transition: filter 0.3s ease;
+      box-shadow: 0 0 20px var(--accent);
+      cursor: pointer;
+    }
+    video:hover {
+      filter: sepia(0) saturate(1.2) brightness(1);
+    }
+
+    /* Play/Pause button */
+    #playPauseBtn {
+      margin-top: 1rem;
+      padding: 0.6rem 1.6rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 24px;
+      background: var(--accent);
+      color: var(--bg-dark);
+      cursor: pointer;
+      box-shadow: 0 4px 10px var(--shadow);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      user-select: none;
+    }
+    #playPauseBtn:hover {
+      background: var(--accent-dark);
       transform: scale(1.05);
     }
-    .product h2 {
-      margin: 0.5rem 0;
-      font-weight: normal;
-      color: #8a4b1a;
+
+    /* Community section */
+    #community {
+      max-width: 640px;
+      width: 100%;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px var(--shadow);
+      padding: 1.5rem 1.5rem 2rem 1.5rem;
+      color: var(--text-light);
+      font-size: 1rem;
+      animation: fadeIn 1.6s ease forwards;
     }
-    .product p {
-      font-style: italic;
-      color: #6f4a25;
+
+    #community h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      text-align: center;
     }
-    section#community {
-      margin-top: 2rem;
-      background: #fff0d6;
-      border-radius: 8px;
-      padding: 1rem;
-      box-shadow: inset 0 0 10px #f3d8aa;
-      animation: fadeIn 1.2s ease forwards;
-    }
+
     #messages {
-      max-height: 200px;
+      max-height: 160px;
       overflow-y: auto;
-      border: 1px solid #d8c4af;
-      background: #fff8e1;
-      padding: 0.5rem;
-      margin-bottom: 0.5rem;
-      border-radius: 6px;
-      font-size: 0.95rem;
+      border: 1px solid #3a2b22;
+      background: #2a221a;
+      padding: 0.8rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
     }
     #messages p {
       margin: 0.3rem 0;
-      color: #5a3e2b;
+      line-height: 1.3;
     }
+
     #msgInput {
-      width: calc(100% - 90px);
-      padding: 0.4rem;
-      border: 1px solid #c4a979;
-      border-radius: 6px;
-      font-size: 1rem;
-      vertical-align: middle;
-    }
-    button {
-      padding: 0.5rem 1rem;
-      background: #a65e2e;
-      color: white;
+      width: calc(100% - 100px);
+      padding: 0.5rem 0.8rem;
+      border-radius: 24px;
       border: none;
-      border-radius: 6px;
+      font-size: 1rem;
+      outline: none;
+      margin-right: 0.5rem;
+      background: #2a221a;
+      color: var(--text-light);
+      box-shadow: inset 1px 1px 4px #403528;
+      transition: box-shadow 0.3s ease;
+    }
+    #msgInput:focus {
+      box-shadow: 0 0 10px var(--accent);
+      background: #362d22;
+    }
+
+    #community button {
+      padding: 0.55rem 1.4rem;
+      border-radius: 24px;
+      border: none;
+      background: var(--accent);
+      color: var(--bg-dark);
+      font-weight: 600;
       cursor: pointer;
-      font-family: 'Georgia', serif;
-      font-weight: bold;
-      vertical-align: middle;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 10px var(--shadow);
+    }
+    #community button:hover {
+      background: var(--accent-dark);
+    }
+
+    /* Form abbonamento */
+    #subscribeForm {
+      max-width: 640px;
+      width: 100%;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px var(--shadow);
+      padding: 1.8rem 2rem;
+      color: var(--text-light);
+      font-size: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      animation: fadeIn 1.8s ease forwards;
+    }
+
+    #subscribeForm h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    #subscribeForm label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    #subscribeForm input[type="email"] {
+      width: 100%;
+      padding: 0.65rem 1rem;
+      border-radius: 24px;
+      border: none;
+      background: #2a221a;
+      color: var(--text-light);
+      font-size: 1rem;
+      box-shadow: inset 1px 1px 4px #403528;
+      margin-bottom: 1rem;
+      transition: box-shadow 0.3s ease;
+      outline: none;
+    }
+    #subscribeForm input[type="email"]:focus {
+      box-shadow: 0 0 10px var(--accent);
+      background: #362d22;
+    }
+
+    #subscribeForm button {
+      display: block;
+      margin: 0 auto;
+      padding: 0.65rem 2.4rem;
+      border-radius: 24px;
+      border: none;
+      background: var(--accent);
+      color: var(--bg-dark);
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 6px 12px var(--shadow);
       transition: background-color 0.3s ease, transform 0.2s ease;
     }
-    button:hover {
-      background: #8a4b1a;
+    #subscribeForm button:hover {
+      background: var(--accent-dark);
       transform: scale(1.05);
-    }
-    form#subscribeForm {
-      margin-top: 1rem;
-      background: #fff3e6;
-      padding: 1rem;
-      border-radius: 8px;
-      border: 1px solid #d8c4af;
-      box-shadow: 1px 1px 6px #e0cbb6;
-      animation: fadeIn 1.4s ease forwards;
-    }
-    label {
-      font-weight: bold;
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-    input[type="email"] {
-      width: 100%;
-      padding: 0.5rem;
-      border: 1px solid #c4a979;
-      border-radius: 6px;
-      margin-bottom: 0.6rem;
-      font-size: 1rem;
     }
 
     #subscribeMessage {
-      margin-top: 0.5rem;
+      text-align: center;
+      margin-top: 1rem;
       font-style: italic;
-      color: #6f4a25;
+      color: #d7a68d;
     }
 
-    /* Sezione video */
-    #videoSection {
-      margin-top: 2rem;
-      border: 1px solid #d8c4af;
-      border-radius: 8px;
-      background: #fff0e5;
-      padding: 1rem;
-      box-shadow: 2px 2px 8px #e0cbb6;
-      text-align: center;
-      animation: fadeIn 1.6s ease forwards;
+    /* Animazione fadeIn */
+    @keyframes fadeIn {
+      from {
+        opacity: 0; 
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    #videoSection h2 {
-      color: #8a4b1a;
-      margin-bottom: 0.8rem;
-    }
-    video {
-      max-width: 100%;
-      border-radius: 8px;
-      filter: brightness(0.95);
-      transition: filter 0.3s ease;
-    }
-    video:hover {
-      filter: brightness(1);
-    }
-    #playPauseBtn {
-      margin-top: 0.8rem;
-      background: #a65e2e;
-      padding: 0.5rem 1.2rem;
-      border-radius: 6px;
-      font-weight: bold;
-      border: none;
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    #playPauseBtn:hover {
-      background: #8a4b1a;
+
+    /* Responsive tweaks */
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      #products {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .product img {
+        height: 180px;
+      }
     }
 
   </style>
