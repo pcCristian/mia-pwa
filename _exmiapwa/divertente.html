@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PWA Divertente</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      background: #f9f9f9;
+    }
+    .hidden { display: none; }
+    button {
+      padding: 0.5rem 1rem;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    button:hover { background: #0056b3; }
+    canvas {
+      image-rendering: pixelated;
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+    }
+    #chat {
+      max-width: 500px;
+      margin-top: 1rem;
+      background: #fff8dc;
+      padding: 1rem;
+      border-radius: 6px;
+    }
+    #chat p {
+      margin: 0.5rem 0;
+    }
+    .user { font-weight: bold; color: #007bff; }
+    .bot { font-style: italic; color: #555; }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 App PWA Divertente</h1>
+  <button onclick="mostraSezione('foto')">📸 Scatta Foto Pixel Art</button>
+  <button onclick="mostraSezione('chat')">🤖 Chat Medievale</button>
+
+  <!-- 📸 Sezione foto -->
+  <section id="foto" class="hidden">
+    <h2>Pixel Art Camera</h2>
+    <video id="video" autoplay playsinline width="320" height="240"></video><br>
+    <button onclick="scattaFoto()">📸 Scatta Foto</button><br>
+    <canvas id="canvas" width="160" height="120"></canvas><br>
+    <button onclick="mostraSezione(null)">🔙 Torna indietro</button>
+  </section>
+
+  <!-- 🤖 Sezione chat -->
+  <section id="chatbot" class="hidden">
+    <h2>Chat Medievale</h2>
+    <div id="chat"></div>
+    <input type="text" id="userInput" placeholder="Scrivi il tuo messaggio..." />
+    <button onclick="inviaMessaggio()">Invia</button><br>
+    <button onclick="mostraSezione(null)">🔙 Torna indietro</button>
+  </section>
+
+  <script>
+    function mostraSezione(id) {
+      document.getElementById('foto').classList.add('hidden');
+      document.getElementById('chatbot').classList.add('hidden');
+      if (id) document.getElementById(id).classList.remove('hidden');
+    }
+
+    // 🎥 Fotocamera
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    if (navigator.mediaDevices?.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => video.srcObject = stream)
+        .catch(err => console.error("Errore webcam:", err));
+    }
+
+    function scattaFoto() {
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    }
+
+    // 🤖 Chat Medievale
+    const chat = document.getElementById('chat');
+    const input = document.getElementById('userInput');
+
+    const risposteMedievali = [
+      "Per mille spade! Non capisco le tue parole, ma son liete!",
+      "Oh nobile viandante, dimmi di più del tuo viaggio.",
+      "Che il sole splenda sul tuo cammino!",
+      "Per la barba di Merlino, codesto è assai curioso!",
+      "Mi rammenta le cronache del regno di Camelot...",
+      "Lo dirò al mio scudiero all'alba!"
+    ];
+
+    function inviaMessaggio() {
+      const testo = input.value.trim();
+      if (!testo) return;
+      aggiungiMessaggio("Tu", testo, "user");
+      input.value = "";
+
+      setTimeout(() => {
+        const risposta = risposteMedievali[Math.floor(Math.random() * risposteMedievali.length)];
+        aggiungiMessaggio("Bot", risposta, "bot");
+      }, 500);
+    }
+
+    function aggiungiMessaggio(mittente, testo, classe) {
+      const p = document.createElement("p");
+      p.innerHTML = `<span class="${classe}">${mittente}:</span> ${testo}`;
+      chat.appendChild(p);
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
+
+</body>
+</html>
