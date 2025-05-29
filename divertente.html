@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Artigianato Locale - Prodotti e Storie</title>
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #fff8f0;
+      color: #5a3e2b;
+      margin: 0;
+      padding: 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeIn 0.8s ease forwards;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Palatino Linotype', serif;
+      font-weight: normal;
+      color: #a65e2e;
+    }
+    .product {
+      border: 1px solid #d8c4af;
+      border-radius: 8px;
+      background: #fff0e5;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      box-shadow: 2px 2px 8px #e0cbb6;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      cursor: default;
+      animation: fadeIn 1s ease forwards;
+    }
+    .product:hover {
+      box-shadow: 4px 6px 12px #d1b57f;
+      transform: translateY(-4px);
+    }
+    .product img {
+      max-width: 100%;
+      border-radius: 6px;
+      display: block;
+      margin-bottom: 0.6rem;
+      transition: transform 0.3s ease;
+    }
+    .product img:hover {
+      transform: scale(1.05);
+    }
+    .product h2 {
+      margin: 0.5rem 0;
+      font-weight: normal;
+      color: #8a4b1a;
+    }
+    .product p {
+      font-style: italic;
+      color: #6f4a25;
+    }
+    section#community {
+      margin-top: 2rem;
+      background: #fff0d6;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: inset 0 0 10px #f3d8aa;
+      animation: fadeIn 1.2s ease forwards;
+    }
+    #messages {
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #d8c4af;
+      background: #fff8e1;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+    #messages p {
+      margin: 0.3rem 0;
+      color: #5a3e2b;
+    }
+    #msgInput {
+      width: calc(100% - 90px);
+      padding: 0.4rem;
+      border: 1px solid #c4a979;
+      border-radius: 6px;
+      font-size: 1rem;
+      vertical-align: middle;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      background: #a65e2e;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Georgia', serif;
+      font-weight: bold;
+      vertical-align: middle;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    button:hover {
+      background: #8a4b1a;
+      transform: scale(1.05);
+    }
+    form#subscribeForm {
+      margin-top: 1rem;
+      background: #fff3e6;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #d8c4af;
+      box-shadow: 1px 1px 6px #e0cbb6;
+      animation: fadeIn 1.4s ease forwards;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    input[type="email"] {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #c4a979;
+      border-radius: 6px;
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+    }
+
+    #subscribeMessage {
+      margin-top: 0.5rem;
+      font-style: italic;
+      color: #6f4a25;
+    }
+
+    /* Sezione video */
+    #videoSection {
+      margin-top: 2rem;
+      border: 1px solid #d8c4af;
+      border-radius: 8px;
+      background: #fff0e5;
+      padding: 1rem;
+      box-shadow: 2px 2px 8px #e0cbb6;
+      text-align: center;
+      animation: fadeIn 1.6s ease forwards;
+    }
+    #videoSection h2 {
+      color: #8a4b1a;
+      margin-bottom: 0.8rem;
+    }
+    video {
+      max-width: 100%;
+      border-radius: 8px;
+      filter: brightness(0.95);
+      transition: filter 0.3s ease;
+    }
+    video:hover {
+      filter: brightness(1);
+    }
+    #playPauseBtn {
+      margin-top: 0.8rem;
+      background: #a65e2e;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      font-weight: bold;
+      border: none;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #playPauseBtn:hover {
+      background: #8a4b1a;
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Artigianato Locale</h1>
+  <p>Scopri prodotti unici fatti a mano da piccoli artigiani della tua zona.</p>
+</header>
+
+<section id="products">
+  <article class="product">
+    <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=600&q=80" alt="Ceramica fatta a mano" />
+    <h2>Vaso in Ceramica Artigianale</h2>
+    <p>Un vaso unico realizzato a mano con tecniche tradizionali.</p>
+  </article>
+
+  <article class="product">
+    <img src="https://images.unsplash.com/photo-1542838687-9d8c5b5dfc92?auto=format&fit=crop&w=600&q=80" alt="Candele profumate artigianali" />
+    <h2>Candele Profumate Naturali</h2>
+    <p>Profumi delicati per rendere ogni ambiente speciale.</p>
+  </article>
+
+  <article class="product">
+    <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=600&q=80" alt="Borsa in pelle fatta a mano" />
+    <h2>Borsa in Pelle Fatto a Mano</h2>
+    <p>Design classico con pelle di alta qualità e cuciture artigianali.</p>
+  </article>
+</section>
+
+<section id="videoSection">
+  <h2>Video Slow Motion: L'Arte in Movimento</h2>
+  <video id="artisanVideo" controls playsinline muted loop>
+    <source src="https://cdn.videvo.net/videvo_files/video/free/2016-08/small_watermarked/160729_Slow_Motion_Handcraft_01_preview.webm" type="video/webm">
+    Il tuo browser non supporta il video.
+  </video><br>
+  <button id="playPauseBtn" onclick="togglePlayPause()">▶️ Play/Pausa</button>
+</section>
+
+<section id="community">
+  <h2>La Nostra Community</h2>
+  <div id="messages">
+    <p><strong>Maria:</strong> Ho acquistato il vaso, è splendido!</p>
+    <p><strong>Luca:</strong> Le candele profumate sono fantastiche, consiglio a tutti.</p>
+  </div>
+  <input type="text" id="msgInput" placeholder="Scrivi un commento..." />
+  <button onclick="aggiungiMessaggio()">Invia</button>
+</section>
+
+<form id="subscribeForm" onsubmit="iscriviti(event)">
+  <h2>Iscriviti al nostro Abbonamento</h2>
+  <label for="email">Email per offerte e novità:</label>
+  <input type="email" id="email" required placeholder="la tua email" />
+  <button type="submit">Iscriviti</button>
+  <p id="subscribeMessage"></p>
+</form>
+
+<script>
+  const messagesDiv = document.getElementById('messages');
+  const msgInput = document.getElementById('msgInput');
+  const subscribeMessage = document.getElementById('subscribeMessage');
+  const video = document.getElementById('artisanVideo');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+
+  function aggiungiMessaggio() {
+    const testo = msgInput.value.trim();
+    if (!testo) return;
+    const p = document.createElement('p');
+    p.innerHTML = `<strong>Tu:</strong> ${testo}`;
+    messagesDiv.appendChild(p);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    msgInput.value = '';
+  }
+
+  function iscriviti(e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    if (!email) return;
+    subscribeMessage.textContent = `Grazie per esserti iscritto, ${email}! Ti terremo aggiornato.`;
+    e.target.reset();
+  }
+
+  function togglePlayPause() {
+    if (video.paused) {
+      video.play();
+      playPauseBtn.textContent = "⏸️ Pausa";
+    } else {
+      video.pause();
+      playPauseBtn.textContent = "▶️ Play";
+    }
+  }
+</script>
+
+</body>
+</html>
